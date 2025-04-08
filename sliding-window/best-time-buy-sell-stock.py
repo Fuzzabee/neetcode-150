@@ -5,9 +5,12 @@
 def maxProfit(prices):
     if len(prices) == 0: return 0
     
+    # Initial variable setup
     buy = prices[0]
     sell = prices[0]
     profit = sell - buy
+
+    # Loop through each value, checking for a new low buy point, and comparing all sell points to the lowest available buy, updating when necessary
     for n in prices:
         if n < buy:
             buy = n
