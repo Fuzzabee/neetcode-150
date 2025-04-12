@@ -20,22 +20,38 @@
 #     uniqueWays += climb(currentN + 2, n)
 #     return uniqueWays
 
+# def climbStairs(n):
+#     if n == 1: return 1
+
+#     curIndex = n
+#     stairsClimbed = [0] * ( n + 1 )
+#     stairsClimbed[curIndex] = 1
+#     curIndex -= 1
+#     stairsClimbed[curIndex] = 1
+#     curIndex -= 1
+
+#     while curIndex >= 0:
+#         stairsClimbed[curIndex] = stairsClimbed[curIndex + 1] + stairsClimbed[curIndex + 2]
+#         curIndex -= 1
+
+#     print(stairsClimbed)
+#     return stairsClimbed[0]
+
 def climbStairs(n):
     if n == 1: return 1
+    if n == 2: return 2
 
-    curIndex = n
-    stairsClimbed = [0] * ( n + 1 )
-    stairsClimbed[curIndex] = 1
-    curIndex -= 1
-    stairsClimbed[curIndex] = 1
-    curIndex -= 1
+    currentN = 2
+    numberOfWays = 2
+    prev1 = 2
+    prev2 = 1
+    while currentN < n:
+        numberOfWays = prev1 + prev2
+        prev2 = prev1
+        prev1 = numberOfWays
+        currentN += 1
 
-    while curIndex >= 0:
-        stairsClimbed[curIndex] = stairsClimbed[curIndex + 1] + stairsClimbed[curIndex + 2]
-        curIndex -= 1
-
-    print(stairsClimbed)
-    return stairsClimbed[0]
+    return numberOfWays
 
 def main():
     # Input: n = 2
@@ -46,7 +62,7 @@ def main():
     # Output: 3
     print(climbStairs(3))
 
-    print(climbStairs(100))
+    print(climbStairs(4))
 
 if __name__ == "__main__":
     main()
