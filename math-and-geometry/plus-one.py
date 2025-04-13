@@ -14,9 +14,15 @@ def plusOne(digits):
         result[0] = 1
         return result
     
-    result = [0] * len(digits)
+    result = digits.copy()
+    for i in range(len(result) - 1, -1, -1):
+        if result[i] == 9:
+            result[i] = 0
+        else:
+            result[i] += 1
+            break
+
     return result
-    # for i in range()
 
 
 def main():
