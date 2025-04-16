@@ -14,11 +14,30 @@ class TreeNode:
         self.left = left
         self.right = right
 
+def makeQueue(nodes):
+    newQueue = []
+    for node in nodes:
+        if node.left: newQueue.append(node.left)
+        if node.right: newQueue.append(node.right)
+    return newQueue
+
 def getHeight(root):
-    return -1
+    if not root: return 0
+
+    queue = [root]
+    height = 0
+    while queue:
+        queue = makeQueue(queue)
+        height += 1
+    return height
+
 
 def isBalanced(root):
-    return False
+    if not root: return True
+
+    leftHeight = getHeight(root.left)
+    rightHeight = getHeight(root.right)
+    return abs(leftHeight - rightHeight) <= 1
 
 def main():
     # Input: root = [1,2,3,null,null,4]
