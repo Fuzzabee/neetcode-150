@@ -12,11 +12,21 @@
 
 
 def climbStairs(n):
-    return -1
+    results = []
+    for i in range(n):
+        if i == 0: results.append(1)
+        elif i == 1: results.append(2)
+        else:
+            results.append(results[i - 1] + results[i - 2])
+
+    return results[-1]
 
 def main():
     print(climbStairs(2))
     print(climbStairs(3))
+    print(climbStairs(4))
+    print(climbStairs(15))
+    print(climbStairs(30))
 
 if __name__ == "__main__":
     main()
