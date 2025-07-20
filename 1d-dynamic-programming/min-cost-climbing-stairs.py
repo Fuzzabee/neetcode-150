@@ -14,7 +14,17 @@
 ####################
 
 def minCostClimbingStairs(cost):
-    return -1
+    if not cost: return -1
+    if len(cost) == 1: return cost[0]
+    if len(cost) == 2: return min(cost[0], cost[1])
+
+    totalCost = [cost[-1], cost[-2]]
+    for i in range(len(cost) - 3, -1, -1):
+        curStairCost = cost[i]
+        bestCost = min(totalCost[-1], totalCost[-2])
+        totalCost.append(curStairCost + bestCost)
+
+    return min(totalCost[-1], totalCost[-2])
 
 def main():
     print(minCostClimbingStairs([1,2,3]))
