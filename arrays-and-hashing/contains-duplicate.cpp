@@ -28,11 +28,11 @@ bool hasDuplicate(std::vector<int>& nums) {
 void runTestSuite() {
     std::vector<int> test1Input = {1, 2, 3, 3};
     int test1Result = hasDuplicate(test1Input);
-    std::cout << "Expected: true Actual: " << test1Result << "\n";
+    std::cout << "Expected: true (1) Actual: " << test1Result << "\n";
 
     std::vector<int> test2Input = {1, 2, 3, 4};
     int test2Result = hasDuplicate(test2Input);
-    std::cout << "Expected: false Actual: " << test2Result << "\n";    
+    std::cout << "Expected: false (0) Actual: " << test2Result << "\n";    
 }
 
 int main() {
