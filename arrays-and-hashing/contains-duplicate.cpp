@@ -11,7 +11,7 @@
 #include <set>
 #include <vector>
 
-bool hasDuplicate(std::vector<int>& nums) {
+bool hasDuplicate(std::vector<int>& const nums) {
     std::set<int> numsEncountered;
     std::vector<int>::iterator it;
 

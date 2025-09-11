@@ -13,7 +13,7 @@
 #include <iostream>
 #include <string>
 
-std::string onlyAlphaNum(std::string s) {
+std::string onlyAlphaNum(const std::string s) {
     std::string returnString = "";
     for (char c : s) {
         if (std::isalnum(c)) {
@@ -23,7 +23,7 @@ std::string onlyAlphaNum(std::string s) {
     return returnString;
 }
 
-bool isPalindrome(std::string s) {
+bool isPalindrome(const std::string s) {
     std::string sModified = onlyAlphaNum(s);
     int leftIndex = 0;
     int rightIndex = sModified.length() - 1;
