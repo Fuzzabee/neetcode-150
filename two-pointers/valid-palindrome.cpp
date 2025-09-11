@@ -23,7 +23,7 @@ std::string onlyAlphaNum(const std::string s) {
     return returnString;
 }
 
-bool isPalindrome(const std::string s) {
+bool isPalindrome(std::string s) {
     std::string sModified = onlyAlphaNum(s);
     int leftIndex = 0;
     int rightIndex = sModified.length() - 1;
