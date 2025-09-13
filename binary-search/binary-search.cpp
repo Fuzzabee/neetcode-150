@@ -14,15 +14,32 @@
 #include <vector>
 
 int search(std::vector<int>& nums, int target) {
+    if (nums.size() == 0) { return -1; }
+
+    int leftIndex = 0;
+    int rightIndex = nums.size() - 1;
+
+    while (rightIndex - leftIndex > 1) {
+        int newIndex = (leftIndex + rightIndex) / 2;
+
+        if (nums.at(newIndex) == target) { return newIndex; }
+        if (nums.at(newIndex) < target) { leftIndex = newIndex + 1; }
+        if (nums.at(newIndex) > target) { rightIndex = newIndex - 1; }
+    }
+
+    if (nums.at(leftIndex) == target) { return leftIndex; }
+    if (nums.at(rightIndex) == target) { return rightIndex; }
     return -1;
 }
 
 void runTestSuite() {
+    // Test 1
     std::vector<int> test1Nums = {-1, 0, 2, 4, 6, 8};
     int test1Target = 4;
     int test1Result = search(test1Nums, test1Target);
     std::cout << "Expected: 3 Actual: " << test1Result << "\n";
 
+    // Test 2
     std::vector<int> test2Nums = {-1, 0, 2, 4, 6, 8};
     int test2Target = 3;
     int test2Result = search(test2Nums, test2Target);
