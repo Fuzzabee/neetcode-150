@@ -1,50 +1,32 @@
-// Given the beginning of a singly linked list head, reverse the list, and return the new beginning of the list.
+// You are given the root of a binary tree root. Invert the binary tree and return its root.
 // 
-// Input: head = [0,1,2,3]
-// Output: [3,2,1,0]
+// Input: root = [1,2,3,4,5,6,7]
+// Output: [1,3,2,7,6,5,4]
 // 
-// Input: head = []
+// Input: root = [3,2,1]
+// Output: [3,1,2]
+// 
+// Input: root = []
 // Output: []
 
 #include <iostream>
 
-// Definition for singly-linked list.
-struct ListNode {
+// Definition for a binary tree node.
+ struct TreeNode {
     int val;
-    ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-void printList(ListNode* head) {
-    ListNode* curNode = head;
-
-    std::cout << "[";
-    while (curNode != nullptr) {
-        std::cout << curNode->val;
-        curNode = curNode->next;
-        if (curNode != nullptr) {
-            std::cout << ",";
-        }        
-    }
-    std::cout << "]\n";
+void printTree(TreeNode* root) {
+    return;
 }
 
-ListNode* reverseList(ListNode* head) {
-    if (head == nullptr) { return head; }
-
-    ListNode* curNode = head;
-    ListNode* prevNode = nullptr;
-    while (curNode->next != nullptr) {
-        ListNode* nextNode = curNode->next;
-        curNode->next = prevNode;
-        prevNode = curNode;
-        curNode = nextNode;
-    }
-    curNode->next = prevNode;
-
-    return curNode;
+TreeNode* invertTree(TreeNode* root) {
+    return root;
 }
 
 void runTestSuite() {
