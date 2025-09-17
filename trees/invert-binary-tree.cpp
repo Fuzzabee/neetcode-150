@@ -21,13 +21,17 @@
 };
 
 void printTree(TreeNode* root) {
+    if (root == nullptr) {
+        std::cout << "[]\n";
+        return;
+    }
+
     std::vector<TreeNode*> queue = {root};
 
     std::cout << "[";
     while (queue.size() != 0) {
         std::vector<TreeNode*> newQueue;
         for (TreeNode* curNode : queue) {
-            if (curNode->left == nullptr && curNode->right == nullptr) { continue; }
             if (curNode->left != nullptr) { newQueue.push_back(curNode->left); }
             if (curNode->right != nullptr) { newQueue.push_back(curNode->right); }
 
@@ -39,6 +43,21 @@ void printTree(TreeNode* root) {
 }
 
 TreeNode* invertTree(TreeNode* root) {
+    if (root == nullptr) { return root; }
+
+    std::vector<TreeNode*> queue = {root};
+    while (queue.size() != 0) {
+        std::vector<TreeNode*> newQueue;
+        for (TreeNode* curNode : queue) {
+            if (curNode->left != nullptr) { newQueue.push_back(curNode->left); }
+            if (curNode->right != nullptr) { newQueue.push_back(curNode->right); }
+            TreeNode* temp = curNode->left;
+            curNode->left = curNode->right;
+            curNode->right = temp;
+        }
+        queue = newQueue;
+    }
+
     return root;
 }
 
@@ -55,22 +74,38 @@ void runTestSuite() {
     test1Node1.left = &test1Node2;
     test1Node1.right = &test1Node3;
     test1Node2.left = &test1Node4;
-    test1Node2.left = &test1Node5;
+    test1Node2.right = &test1Node5;
     test1Node3.left = &test1Node6;
-    test1Node3.left = &test1Node7;
+    test1Node3.right = &test1Node7;
 
+    std::cout << "Test 1 Input: ";
+    printTree(&test1Node1);
+    invertTree(&test1Node1);
+    std::cout << "Test 1 Output: ";
     printTree(&test1Node1);
 
-    // ListNode* test1Result = reverseList(&test1Node0);
-    // std::cout << "Expected: [3,2,1,0] Actual: ";
-    // printList(test1Result);
-    // std::cout << "\n";
-
     // Test 2
-    // ListNode* test2Node1 = nullptr;
-    // ListNode* test2Result = reverseList(test2Node1);
-    // std::cout << "Expected: [] Actual: ";
-    // printList(test2Result);
+    TreeNode test2Node1 = TreeNode(3);
+    TreeNode test2Node2 = TreeNode(2);
+    TreeNode test2Node3 = TreeNode(1);
+    
+    test2Node1.left = &test2Node2;
+    test2Node1.right = &test2Node3;
+
+    std::cout << "Test 2 Input: ";
+    printTree(&test2Node1);
+    invertTree(&test2Node1);
+    std::cout << "Test 2 Output: ";
+    printTree(&test2Node1);
+    
+    // Test 3
+    TreeNode* test3Node1 = nullptr;
+
+    std::cout << "Test 3 Input: ";
+    printTree(test3Node1);
+    invertTree(test3Node1);
+    std::cout << "Test 3 Output: ";
+    printTree(test3Node1);
 }
 
 int main() {
